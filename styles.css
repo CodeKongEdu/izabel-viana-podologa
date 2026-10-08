@@ -204,3 +204,108 @@
   .case-reel-hint{font-size:8px;letter-spacing:.1em}
   .clinic-gallery{grid-template-columns:1fr 1fr;grid-template-rows:300px 200px 200px 200px}
 }
+
+/* ===== V10.1 — enquadramento de fotos: mesmo tamanho, menos zoom ===== */
+.need-visual{
+  display:grid;
+  place-items:center;
+}
+.need-visual img{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:min(78%,430px);
+  height:auto;
+  aspect-ratio:3/4;
+  max-width:none;
+  max-height:none;
+  padding:0;
+  object-fit:cover;
+  object-position:center;
+  border-radius:12px;
+  transform:translate(-50%,-50%);
+  filter:drop-shadow(0 16px 30px rgba(14,25,30,.13));
+}
+.need-stage.changing .need-visual img{
+  opacity:.18;
+  transform:translate(-50%,-50%) scale(.985);
+}
+
+/* Resultados principais: mostrar a fotografia inteira, sem cortar/aproximar demais */
+.case-image{
+  display:grid;
+  place-items:center;
+  background:#101c20;
+}
+.case-image img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  padding:14px 10px;
+  transition:transform .6s cubic-bezier(.2,.8,.2,1);
+}
+.case-image:hover img{transform:scale(1.012)}
+
+@media(max-width:980px){
+  .need-visual img{width:min(76%,370px)}
+  .case-image{width:min(calc(100% - 36px),420px);height:560px;margin:18px auto 0;border-radius:22px;overflow:hidden}
+  .case-image img{padding:12px}
+}
+@media(max-width:680px){
+  .need-visual img{width:min(82%,340px)}
+  .case-image{width:min(calc(100% - 28px),360px);height:500px;margin-top:14px}
+  .case-image img{padding:10px}
+}
+
+/* Galeria de casos: preservar a foto completa dentro do card */
+.case-tile img{
+  object-fit:contain;
+  object-position:center;
+  background:var(--dark-2);
+  padding:4px;
+}
+.case-tile:hover img{transform:scale(1.01)}
+
+/* V10.2 — galeria clínica completa */
+.case-reel{gap:16px;padding-bottom:20px}
+.case-tile{background:#0f1b1f}
+.case-tile img{padding:10px;object-fit:contain;object-position:center}
+@media (max-width:680px){.case-reel{gap:14px}.case-tile img{padding:8px}}
+
+
+/* ===== V10.3 — ajustes finos pedidos pela cliente ===== */
+@media (min-width:981px){
+  .case-feature-grid{align-items:stretch;gap:20px}
+  .case-feature{min-height:500px;grid-template-columns:.9fr 1.1fr}
+  .case-image{min-height:500px}
+}
+.case-image img{
+  padding:20px 18px;
+}
+.process-strip figure:last-child img{
+  object-fit:contain;
+  object-position:center;
+  padding:14px;
+  background:#101c20;
+}
+.social-cards article:first-child img{
+  object-fit:contain;
+  object-position:center;
+  padding:10px;
+  background:#101c20;
+}
+.social-cards article:last-child img{
+  object-fit:contain;
+  object-position:center;
+  padding:8px;
+  background:#101c20;
+}
+@media (max-width:980px){
+  .case-image img{padding:16px 14px}
+  .process-strip figure:last-child img{padding:10px}
+  .social-cards article:first-child img,.social-cards article:last-child img{padding:8px}
+}
+@media (max-width:680px){
+  .case-image img{padding:12px 10px}
+}
